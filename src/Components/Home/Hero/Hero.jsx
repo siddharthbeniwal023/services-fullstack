@@ -1,5 +1,6 @@
 import React from "react";
-import { alpha, useTheme } from "@mui/material/styles";
+// import { alpha, useTheme } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -10,12 +11,18 @@ import image1 from "./Images/MS.png";
 
 const Hero = () => {
     
-  const theme = useTheme();
+    const theme = createTheme({
+        typography: {
+          fontFamily: [
+            'Quicksand', 'sans-serif',  
+          ].join(','),
+        },});
   const isMd = useMediaQuery(theme.breakpoints.up("md"), {
     defaultMatches: true,
   });
   console.log('here',image1)
   return (
+    <ThemeProvider theme={theme}>
     <Grid container spacing={4}>
       <Grid item container xs={12} md={6} alignItems={"center"}>
         <Box
@@ -78,6 +85,7 @@ const Hero = () => {
         </Box>
       </Grid>
     </Grid>
+    </ThemeProvider>
   );
 };
 export default Hero;
